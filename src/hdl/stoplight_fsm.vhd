@@ -72,11 +72,12 @@ end stoplight_fsm;
 architecture stoplight_fsm_arch of stoplight_fsm is 
 	
 	-- create register signals with default state yellow (10)
-  
+  signal f_Q : std_logic_vector := "10";
+  signal f_Q_next : std_logic_vector := "10";
 begin
 	-- CONCURRENT STATEMENTS ----------------------------
 	-- Next state logic
-	
+	0_G = 
 	
 	-- Output logic
 	
@@ -84,9 +85,13 @@ begin
 	
 	-- PROCESSES ----------------------------------------	
 	-- state memory w/ asynchronous reset ---------------
-	register_proc : process (  )
+	register_proc : process (i_clk, i_reset )
 	begin
-			--Reset state is yellow
+		if i_reset ='1' then
+		  f_Q <= "10";
+		elsif (rising_edge(i_clk)) then
+		  f_Q <= f_Q_next;
+		end if;
 
 
 	end process register_proc;
